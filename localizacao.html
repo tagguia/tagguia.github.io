@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<script src="jquery-2.1.3.js"></script>
+</head>
+<body id="body">
+
+	<input type="button" value="Me encontre!" class="button">
+
+	<script>
+	(function() {
+		if('geolocation' in navigator){
+
+			function returnResult(arrReturn){
+				var cityStateCountry = arrReturn.split(", ");
+				var city = cityStateCountry[0];
+				var state = cityStateCountry[1];
+				var country = cityStateCountry[2];
+
+				console.log(city);
+				console.log(state);
+				console.log(country);					
+			}	
+
+			function findMe(){
+				navigator.geolocation.getCurrentPosition(function(geo){
+					var latitude = geo.coords.latitude;
+					var longitude = geo.coords.longitude;
+
+					var url = "http://maps.googleapis.com/maps/api/geocode/json?latlng="+latitude+","+longitude+"&sensor=true";
+
+					$.ajax({
+						url: url,
+						cashe: false,
+						dataType: "json",
+						beforeSend: function(){
+							console.log("carregando");
+						},
+						error: function(){
+							console.log("ocorreu um erro");
+						},
+						success: function(retorno){
+									if(retorno.erro){
+										console.log(retorno.erro);
+									} else {
+										var result = retorno['results'][3].formatted_address;
+										
+										returnResult(result);
+
+									}
+								}
+					});
+
+				});				
+			}
+
+
+			var button = document.querySelector('.button');
+			button.addEventListener('click', findMe, false);
+			
+		} else {
+			console.log("Seu navegador não suporta geolocalização");
+		}	
+
+	}());
+	</script>
+	
+</body>
+</html>
