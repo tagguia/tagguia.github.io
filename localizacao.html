@@ -5,10 +5,17 @@
 	<title>Teste de localização</title>
 
 	<script src="jquery-2.1.3.js"></script>
+	<link rel="stylesheet" href="main.css">
 </head>
 <body id="body">
 
 	<input type="button" value="Me encontre!" class="button">
+
+	<ul>
+		<li><label for="cidade">Cidade: </label><h2 class="city"></h2></li>
+		<li><label for="estado">Estado: </label><h2 class="state"></h2></li>
+		<li><label for="pais">País: </label><h2 class="country"></h2></li>
+	</ul>	
 
 	<script>
 	(function() {
@@ -20,9 +27,13 @@
 				var state = cityStateCountry[1];
 				var country = cityStateCountry[2];
 
-				console.log(city);
-				console.log(state);
-				console.log(country);					
+				var h2City = document.querySelector('.city');
+				var h2State = document.querySelector('.state');
+				var h2Country = document.querySelector('.country');
+
+				h2City.innerHTML = city;					
+				h2State.innerHTML = state;
+				h2Country.innerHTML = country;
 			}	
 
 			function findMe(){
