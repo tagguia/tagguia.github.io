@@ -16,7 +16,6 @@
 	<ul>
 		<li><label for="cidade">Cidade: </label><h2 class="city"></h2></li>
 		<li><label for="estado">Estado: </label><h2 class="state"></h2></li>
-		<li><label for="pais">País: </label><h2 class="country"></h2></li>
 	</ul>	
 
 
@@ -26,17 +25,18 @@
 
 			function returnResult(arrReturn){
 				var cityStateCountry = arrReturn.split(", ");
+				var cep = arrReturn.split(" - ");
 				var city = cityStateCountry[0];
 				var state = cityStateCountry[1];
 				var country = cityStateCountry[2];
 
 				var h2City = document.querySelector('.city');
 				var h2State = document.querySelector('.state');
-				var h2Country = document.querySelector('.country');
 
 				h2City.innerHTML = city;					
 				h2State.innerHTML = state;
-				h2Country.innerHTML = country;
+
+				console.log(cep);
 			}	
 
 			function findMe(){
