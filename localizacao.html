@@ -14,9 +14,17 @@
 	<input type="button" value="Me encontre!" class="button">
 
 	<ul>
-		<li><label for="cidade">Cidade: </label><h2 class="city"></h2></li>
-		<li><label for="estado">Estado: </label><h2 class="state"></h2></li>
-	</ul>	
+		<li><label for="cidade"></label><h2 class="city"></h2></li>
+		<li><label for="estado"></label><h2 class="state"></h2></li>
+	</ul>
+
+	<noscript>
+		<form action="query.php" method="post">
+			<label for="Cidade">Cidade: </label><input type="text" name="cidade" id="city">
+			<label for="Estado">Estado: </label><input type="text" name="estado" id="state">
+			<input type="submit" value="Enviar">
+		</form>
+	</noscript>
 
 
 	<script>
@@ -76,7 +84,10 @@
 			button.addEventListener('click', findMe, false);
 			
 		} else {
-			console.log("Seu navegador não suporta geolocalização");
+			var form = "<form action='query.php' method='post'><label for='cidade'>Cidade: </label><input type='text' name='city' id='' /><label for='estado'>Estado: </label><input type='text' name='state' id='' /><input type='submit' value='Enviar' /></form>";
+			var body = document.querySelector('body');
+
+			body.innerHTML += form;
 		}	
 
 	}());
