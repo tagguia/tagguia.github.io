@@ -1,0 +1,100 @@
+<!DOCTYPE <html></html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tagguia | O seu Guia!</title>
+	<script src="jquery-2.1.3.js"></script>
+	<link rel="stylesheet" href="css/main.css">
+
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+	<meta name="viewport" content="width=device-width">
+</head>
+<body>
+
+	<img src="img/tagguia logomarca.png" width="300px" alt="">
+
+	<h1>O tagguia foi criado para te aproximar dos melhores estabelecimentos de sua região.</h1>
+
+	<h4>Escolha abaixo as categorias que mais te representam :D</h4>
+
+	<form action="">
+
+		<ul>
+			<li><input type="checkbox" name="alimentacao" class="checkbox toggle__input" id="alimentacao"><label for="alimentacao" class="fa-circle-o">Alimentação</label></li>
+			<li><input type="checkbox" name="beleza" class="checkbox toggle__input" id="beleza"><label for="beleza" class="fa-circle-o">Beleza</label></li>
+			<li><input type="checkbox" name="diversao" class="checkbox toggle__input" id="diversao"><label for="diversao" class="fa-circle-o">Diversão</label></li>
+			<li><input type="checkbox" name="educacao" class="checkbox toggle__input" id="educacao"><label for="educacao" class="fa-circle-o">Educação</label></li>
+			<li><input type="checkbox" name="equipamentos" class="checkbox toggle__input" id="equipamentos"><label for="equipamentos" class="fa-circle-o">Equipamentos</label></li>
+			<li><input type="checkbox" name="esporte" class="checkbox toggle__input" id="esporte"><label for="esporte" class="fa-circle-o">Esporte</label></li>
+			<li><input type="checkbox" name="imoveis" class="checkbox toggle__input" id="imoveis"><label for="imoveis" class="fa-circle-o">Imóveis</label></li>
+			<li><input type="checkbox" name="moda" class="checkbox toggle__input" id="moda"><label for="moda" class="fa-circle-o">Moda</label></li>
+			<li><input type="checkbox" name="saude" class="checkbox toggle__input" id="saude"><label for="saude" class="fa-circle-o">Saúde</label></li>
+			<li><input type="checkbox" name="servicos" class="checkbox toggle__input" id="servicos"><label for="servicos" class="fa-circle-o">Serviços</label></li>
+			<li><input type="checkbox" name="tecnologia" class="checkbox toggle__input" id="tecnologia"><label for="tecnologia" class="fa-circle-o">Tecnologia</label></li>
+			<li><input type="checkbox" name="viajem" class="checkbox toggle__input" id="viajem"><label for="viajem" class="fa-circle-o">Viajem</label></li>
+		</ul>
+
+	</form>
+
+	<input type="button" value="Continuar" class="botao">
+
+	<noscript>
+		<form action="geoAddress.php" method="post">
+			<label for="Cidade">Cidade: </label><input type="text" name="city" id="city">
+			<label for="Estado">Estado: </label><input type="text" name="state" id="state">
+			<input type="submit" value="Enviar">
+		</form>
+	</noscript>
+
+	<script>
+		(function() {
+
+			function getLocation(){
+				if(navigator.geolocation){
+					navigator.geolocation.getCurrentPosition(getSuccess);
+				} else {
+					var form = "<form action='query.php' method='post'><label for='cidade'>Cidade: </label><input type='text' name='city' id=''/><label for='estado'>Estado: </label><input type='text' name='state' id=''/><input type='submit' value='Enviar'/></form>";
+					var body = document.querySelector('body');
+
+					body.innerHTML += form;
+				}
+			}
+
+			function getSuccess(geo) {
+				var checkboxes = document.querySelectorAll(".checkbox");
+				var arrCheckboxes = [];
+				for(var i=0;i<checkboxes.length;i++){
+					if(checkboxes[i].checked){
+						arrCheckboxes.push(checkboxes[i].name);
+					}
+				}
+				console.log(arrCheckboxes);
+				$.ajax({
+					type: 'POST',
+					url: 'geoReverse.php',
+					data: {
+						lat: geo.coords.latitude,
+						lng: geo.coords.longitude,
+						arr: arrCheckboxes
+					},
+					beforeSend: function(){
+						console.log("Carregando");
+					},
+					dataType: 'json',
+					success: function(response){
+						console.log(response['results'][1].formatted_address);
+					},
+					error: function(error){
+						console.log(error.responseText);
+					}
+				});
+			}
+
+			var button = document.querySelector(".botao");
+			button.addEventListener('click', getLocation, false);
+
+		}());
+	</script>
+</body>
+</html>
