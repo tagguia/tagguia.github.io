@@ -15,9 +15,13 @@
       var data = {};
       var crd = pos.coords;
 
+      data = {lat: crd.latitude, long: crd.longitude, acc: crd.accuracy};
+
       console.log("lat: " + crd.latitude);
       console.log("long: " + crd.longitude);
       console.log("acc: " + crd.accuracy);
+
+      return data;
     };
 
     function error(err) {
