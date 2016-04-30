@@ -14,7 +14,7 @@
     function success(pos) {
       var crd = pos.coords;
 
-      return crd.latitude, crd.longitude, crd.accuracy;
+      return crd;      
     };
 
     function error(err) {
