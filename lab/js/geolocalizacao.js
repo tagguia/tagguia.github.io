@@ -11,11 +11,11 @@
     function success(pos) {
       var crd = pos.coords;
 
-      return new Object({
+      return location = {
         lat: crd.latitude,
         long: crd.longitude,
         acc: crd.accuracy
-      });
+      };
     };
 
     function error(err) {
