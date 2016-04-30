@@ -15,7 +15,7 @@
         lat: crd.latitude,
         long: crd.longitude,
         acc: crd.accuracy
-      )
+      );
     };
 
     function error(err) {
