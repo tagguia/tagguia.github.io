@@ -9,6 +9,7 @@
     };
 
     function success(pos) {
+      var location = {};
       var crd = pos.coords;
 
       return location = {
