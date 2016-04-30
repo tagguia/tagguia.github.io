@@ -2,7 +2,7 @@
   var button = document.querySelector('.button');
 
   if(!navigator.geolocation){
-    return
+    return false
   };
 
     var options = {
@@ -15,11 +15,9 @@
       var data = {};
       var crd = pos.coords;
 
-      return data = {
-        lat: crd.latitude,
-        long: crd.longitude,
-        acc: crd.accuracy
-      };
+      console.log("lat: " + crd.latitude);
+      console.log("long: " + crd.longitude);
+      console.log("acc: " + crd.accuracy);
     };
 
     function error(err) {
