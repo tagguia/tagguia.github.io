@@ -24,6 +24,5 @@
     function geoLocalizar(){
       navigator.geolocation.getCurrentPosition(success, error, options);
     }
-    geoLocalizar();
   }
 })();
