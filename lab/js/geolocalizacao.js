@@ -9,10 +9,10 @@
     };
 
     function success(pos) {
-      var location = {};
+      var data = {};
       var crd = pos.coords;
 
-      return location = {
+      return data = {
         lat: crd.latitude,
         long: crd.longitude,
         acc: crd.accuracy
