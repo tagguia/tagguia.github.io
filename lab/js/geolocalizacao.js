@@ -1,6 +1,9 @@
 (function(){
-  if(navigator.geolocation){
-    console.log("Tem Geolocalização")
+  var button = document.querySelector('.button');
+
+  if(!navigator.geolocation){
+    return
+  };
 
     var options = {
       enableHighAccuracy: true,
@@ -26,6 +29,6 @@
     function geoLocalizar(){
       navigator.geolocation.getCurrentPosition(success, error, options);
     }
-    geoLocalizar();
-  }
+
+    button.addEventListener('click', geoLocalizar, false);
 })();
