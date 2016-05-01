@@ -7,26 +7,32 @@ var geoF = (function(){
       maximumAge: 0
     };
 
-    // Caso o usuário permita a geolocalização exibe as coordenadas
+    // Loga no console o valor que for passado como parametro
+    function exibeLog(l){
+      console.log(l);
+    }
+
+    // Caso o usuário permita a geolocalização retorna os dados de geolocalizacao
     function success(pos) {
       var data = {};
       var crd = pos.coords;
 
+      // inclui no objeto data a latitude, longitude e precisão recebidos da geolocalizacao
       data = {lat: crd.latitude, long: crd.longitude, acc: crd.accuracy};
 
-      console.log(data);
+      exibeLog(data);
 
       return data;
     };
 
     // Caso o usuário negue a geolocalização exibe erro no console
-    // e notifica o usuário da necessidade de autorização
+    // e alerta o usuário da necessidade de autorização
     function error(err) {
       console.warn('ERROR(' + err.code + '): ' + err.message);
-      alert("Para que o app possa te fornecer informações relevantes, é necessário que você permita que ele obtenha sua localização, recarregue a página e tente novamente.");
+      alert("Para que possamos realizar a busca você precisa permitir a geolocalização, recarregue a página e tente de novo.");
     };
 
-    // Executa a geolocalização
+    // Executa a geolocalização com os callbacks
     function geoLocalizar(){
       navigator.geolocation.getCurrentPosition(success, error, options);
     }
