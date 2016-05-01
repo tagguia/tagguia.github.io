@@ -2,7 +2,7 @@
   var button = document.querySelector('.button');
 
   if(!navigator.geolocation){
-    return false
+    button.style.display = "none";
   };
 
     var options = {
