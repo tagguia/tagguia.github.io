@@ -2,22 +2,22 @@ var notificacao = (function (){
 
   if (window.Notification){
 
-    function notifica(title, body){
-      if (Notification.permission === "granted"){
-        var icon = "../img/tagguia logotipo.png";
+    function notifica(message){
+      if (Notification.permission === 'granted'){
+        var icon = '../img/tagguia logotipo.png';
         var options = {
-          body: body,
+          body: message,
           icon: icon
         }
-        var n = new Notification(title, body, options);
+        var n = new Notification(title, options);
+      // Corrigir este módulo
       } else if (Notification.permission !== 'denied') {
         Notification.requestPermission(
           function(permission){
             if(permission === 'granted'){
-              var n = new Notification('','Para que possamos localizar os estabelecimentos próximos a você, por favor recarregue a página e autorize a localização', options);
+              var n = new Notification('', {body: 'Para que possamos exibir os estabelecimentos próximos, recarregue a página e autorize a localização.', icon: icon});
             } else if(permission === 'denied'){
-              console.log('Para que possamos localizar os estabelecimentos próximos a você, por favor recarregue a página e autorize a localização');
-              alert('Para que possamos localizar os estabelecimentos próximos a você, por favor recarregue a página e autorize a localização');
+              alert('Para que possamos exibir os estabelecimentos próximos, recarregue a página e autorize a localização.');
             }
         });
       }
