@@ -30,7 +30,8 @@ var geoF = (function(){
     function error(err) {
       // Corrigir essa função, que não está sendo executada no mozilla
       console.warn('ERROR(' + err.code + '): ' + err.message);
-      notificacao.notifica('', {body: 'Para que possamos exibir os estabelecimentos próximos, recarregue a página e autorize a localização.', icon: '../img/tagguia logotipo.png'});
+      var options = {body: 'Para que possamos exibir os estabelecimentos próximos, recarregue a página e autorize a localização.', icon: '../img/tagguia logotipo.png'};
+      notificacao.notifica('', options);
     };
 
     // Executa a geolocalização com os callbacks

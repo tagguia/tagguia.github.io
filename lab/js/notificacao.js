@@ -15,7 +15,8 @@ var notificacao = (function (){
         Notification.requestPermission(
           function(permission){
             if(permission === 'granted'){
-              var n = new Notification('', {body: 'Para que possamos exibir os estabelecimentos próximos, recarregue a página e autorize a localização.', icon: icon});
+              var options = {body: 'Para que possamos exibir os estabelecimentos próximos, recarregue a página e autorize a localização.', icon: '../img/tagguia logotipo.png'};
+              var n = new Notification('', options);
             } else if(permission === 'denied'){
               alert('Para que possamos exibir os estabelecimentos próximos, recarregue a página e autorize a localização.');
             }
