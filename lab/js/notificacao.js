@@ -12,11 +12,11 @@ var notificacao = (function (){
         var n = new Notification(title, options);
       // Corrigir este módulo
       } else if (Notification.permission !== 'denied') {
+        // Corrigir que está com erro no chrome
         Notification.requestPermission(
           function(permission){
             if(permission === 'granted'){
-              var options = {body: 'Para que possamos exibir os estabelecimentos próximos, recarregue a página e autorize a localização.', icon: '../img/tagguia logotipo.png'};
-              var n = new Notification('', options);
+              var n = new Notification(title, options);
             } else if(permission === 'denied'){
               alert('Para que possamos exibir os estabelecimentos próximos, recarregue a página e autorize a localização.');
             }
