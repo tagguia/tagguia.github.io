@@ -2,7 +2,7 @@ var notificacao = (function (){
 
   if (window.Notification){
 
-    function notifica(message){
+    function notifica(title, message){
       if (Notification.permission === 'granted'){
         var icon = '../img/tagguia logotipo.png';
         var options = {
