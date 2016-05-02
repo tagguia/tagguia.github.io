@@ -29,7 +29,7 @@ var geoF = (function(){
     // e alerta o usuário da necessidade de autorização
     function error(err) {
       console.warn('ERROR(' + err.code + '): ' + err.message);
-      alert("Para que possamos realizar a busca você precisa permitir a geolocalização, recarregue a página e tente de novo.");
+      notificacao.notifica('','Para que possamos realizar a busca você precisa permitir a geolocalização, recarregue a página e tente de novo.');
     };
 
     // Executa a geolocalização com os callbacks
