@@ -28,6 +28,7 @@ var geoF = (function(){
     // Caso o usuário negue a geolocalização exibe erro no console
     // e alerta o usuário da necessidade de autorização
     function error(err) {
+      // Corrigir essa função, ela não é executada no mozilla
       console.warn('ERROR(' + err.code + '): ' + err.message);
       notificacao.notifica('','Para que possamos realizar a busca você precisa permitir a geolocalização, recarregue a página e tente de novo.');
     };

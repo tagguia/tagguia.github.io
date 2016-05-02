@@ -9,15 +9,15 @@ var notificacao = (function (){
           body: body,
           icon: icon
         }
-        var n = new Notification(title, options);
+        var n = new Notification(title, body, options);
       } else if (Notification.permission !== 'denied') {
         Notification.requestPermission(
           function(permission){
             if(permission === 'granted'){
-              var n = new Notification(title, options);
+              var n = new Notification('','Para que possamos localizar os estabelecimentos próximos a você, por favor recarregue a página e autorize a localização', options);
             } else if(permission === 'denied'){
-              console.log('usuário não liberou a notificação');
-              alert('usuário não liberou a notificação');
+              console.log('Para que possamos localizar os estabelecimentos próximos a você, por favor recarregue a página e autorize a localização');
+              alert('Para que possamos localizar os estabelecimentos próximos a você, por favor recarregue a página e autorize a localização');
             }
         });
       }
