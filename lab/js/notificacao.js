@@ -10,13 +10,12 @@ var notificacao = (function (){
           icon: icon
         }
         var n = new Notification(title, options);
-      // Corrigir este módulo
       } else if (Notification.permission !== 'denied') {
-        // Corrigir que está com erro no chrome
+        // Corrigir que está com erro no chrome, quando a notificação é liberada pela primeira vez, notifica sem valor.
         Notification.requestPermission(
           function(permission){
             if(permission === 'granted'){
-              var n = new Notification(title, options);
+              notificacao.notifica('', 'Para que possamos exibir os estabelecimentos próximos, recarregue a página e autorize a localização.');
             } else if(permission === 'denied'){
               alert('Para que possamos exibir os estabelecimentos próximos, recarregue a página e autorize a localização.');
             }
