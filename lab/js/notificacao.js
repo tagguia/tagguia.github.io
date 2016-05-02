@@ -11,12 +11,11 @@ var notificacao = (function (){
         }
         var n = new Notification(title, options);
       } else if (Notification.permission !== 'denied') {
-        // Corrigir que está com erro no chrome, quando a notificação é liberada pela primeira vez, notifica sem valor.
         Notification.requestPermission(
           function(permission){
             if(permission === 'granted'){
               notificacao.notifica('', 'Para que possamos exibir os estabelecimentos próximos, recarregue a página e autorize a localização.');
-            } else if(permission === 'denied'){
+            } else if(permission !== 'granted'){
               alert('Para que possamos exibir os estabelecimentos próximos, recarregue a página e autorize a localização.');
             }
         });
