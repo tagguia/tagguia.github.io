@@ -10,7 +10,7 @@ var notificacao = (function (){
           icon: icon
         }
         var n = new Notification(title, options);
-      } else if (Notification.permission !== 'denied') {
+      } else if (Notification.permission !== 'granted') {
         Notification.requestPermission(
           function(permission){
             if(permission === 'granted'){
